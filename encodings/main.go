@@ -55,20 +55,20 @@ func trimBom(file *os.File) (*os.File, error) {
 
 func getDecoder(b []byte) *encoding.Decoder {
 	if bytes.HasPrefix(b, UTF8) {
-		fmt.Println("utf8 bom")
+		// fmt.Println("utf8 bom")
 		return unicode.UTF8BOM.NewDecoder()
+	} else if bytes.HasPrefix(b, UTF32LE) {
+		// fmt.Println("utf32 le")
+		return utf32.UTF32(utf32.LittleEndian, utf32.UseBOM).NewDecoder()
+	} else if bytes.HasPrefix(b, UTF32BE) {
+		// fmt.Println("utf32 be")
+		return utf32.UTF32(utf32.BigEndian, utf32.UseBOM).NewDecoder()
 	} else if bytes.HasPrefix(b, UTF16LE) {
-		fmt.Println("utf16 le")
+		// fmt.Println("utf16 le")
 		return unicode.UTF16(unicode.LittleEndian, unicode.UseBOM).NewDecoder()
 	} else if bytes.HasPrefix(b, UTF16BE) {
-		fmt.Println("utf16 be")
+		// fmt.Println("utf16 be")
 		return unicode.UTF16(unicode.BigEndian, unicode.UseBOM).NewDecoder()
-	} else if bytes.HasPrefix(b, UTF32LE) {
-		fmt.Println("utf32 le")
-		return utf32.UTF32(utf32.BigEndian, utf32.UseBOM).NewDecoder()
-	} else if bytes.HasPrefix(b, UTF32BE) {
-		fmt.Println("utf32 be")
-		return utf32.UTF32(utf32.BigEndian, utf32.UseBOM).NewDecoder()
 	}
 
 	// fmt.Println("utf8")
@@ -115,10 +115,11 @@ func main() {
 		}
 		_, err = reader.ReadAll()
 		if err != nil {
-      fmt.Printf("err: file=%s: failed to parse CSV. err=%v\n", name, err)
+			fmt.Printf("err: file=%s: failed to parse CSV. err=%v\n", name, err)
 			continue
 		}
 
-		// fmt.Printf("successfully parsed %s\n", name)
+		// fmt.Println(name)
+		// fmt.Println(record[0])
 	}
 }
