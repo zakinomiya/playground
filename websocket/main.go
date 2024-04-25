@@ -215,7 +215,7 @@ func main() {
 			return
 		}
 		s = append(s, v)
-    fmt.Println(len(s))
+		fmt.Println(len(s))
 		if len(s) == 500 {
 			file, _ := os.Create("test_ticker.json")
 			d, _ := json.Marshal(s)

@@ -15,8 +15,8 @@ func main() {
 				sl = l
 				l = v
 			} else {
-        sl = v
-      }
+				sl = v
+			}
 		}
 	}
 

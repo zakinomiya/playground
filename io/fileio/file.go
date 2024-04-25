@@ -44,21 +44,21 @@ func (ss *StringStack) Size() int {
 	return len(ss.data)
 }
 
-func(ss *StringStack) Reverse() {
-  reversed := New()
+func (ss *StringStack) Reverse() {
+	reversed := New()
 
-  for ss.Size() >0 {
-    if i := ss.Pop(); i != nil {
-      reversed.Push(*i)
-    }
-  }
+	for ss.Size() > 0 {
+		if i := ss.Pop(); i != nil {
+			reversed.Push(*i)
+		}
+	}
 
-  ss.data = reversed.data
+	ss.data = reversed.data
 }
 
 func ReadFileAndPrintReverse(fp *os.File) {
 	sc := bufio.NewScanner(fp)
-  stack := New()
+	stack := New()
 	for sc.Scan() {
 		stack.Push(sc.Text())
 	}
@@ -68,13 +68,12 @@ func ReadFileAndPrintReverse(fp *os.File) {
 		os.Exit(1)
 	}
 
-  // implementation 1: reversed and join string array
-  stack.Reverse()
-  fmt.Print(strings.Join(stack.data, "\n"))
+	// implementation 1: reversed and join string array
+	stack.Reverse()
+	fmt.Print(strings.Join(stack.data, "\n"))
 
-  // implementation 2: loop and print
-  //for stack.Size() > 0 {
-  //  fmt.Print(*stack.Pop())
-  //}
+	// implementation 2: loop and print
+	//for stack.Size() > 0 {
+	//  fmt.Print(*stack.Pop())
+	//}
 }
-

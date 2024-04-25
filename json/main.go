@@ -23,11 +23,9 @@ func main() {
 	bookJSON, _ := json.Marshal(book)
 	fmt.Printf("json encoded=%s\n", string(bookJSON))
 
-	var b *Book
+	var b interface{}
 	json.Unmarshal(bookJSON, &b) // passing the pointer to b
-	fmt.Printf("book=%v\n", b)
-	fmt.Printf("authors at index 0=%+v\n", b.Authors[0])
-
+	fmt.Println(b)
 }
 
 // "json" tag defines the name of each field of encoded json string

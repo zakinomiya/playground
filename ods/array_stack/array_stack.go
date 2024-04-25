@@ -57,7 +57,7 @@ func (as *ArrayStack) Remove(i int) int {
 func (as *ArrayStack) Resize() {
 	as.cap = as.Size() * 2
 	newBuf := make([]int, as.Cap())
-  for i := 0; i < as.n; i ++ {
+	for i := 0; i < as.n; i++ {
 		newBuf[i] = as.buf[i]
 	}
 	as.buf = newBuf

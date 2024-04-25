@@ -17,5 +17,5 @@ func main() {
 		os.Exit(1)
 	}
 
-  fileio.ReadFileAndPrintReverse(fp)
+	fileio.ReadFileAndPrintReverse(fp)
 }
