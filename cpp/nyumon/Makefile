@@ -10,6 +10,6 @@ clean:
 	rm program *.gch 
 	
 run: program
-	./main
+	./program
 
 .PHONY: clean run
